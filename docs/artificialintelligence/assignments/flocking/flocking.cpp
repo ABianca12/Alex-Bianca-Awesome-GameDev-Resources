@@ -93,7 +93,7 @@ struct Boid {
   Vector2 position;
   Vector2 velocity;
 };
-
+// Implement
 struct Cohesion {
   double radius;
   double k;
@@ -101,10 +101,14 @@ struct Cohesion {
   Cohesion() = default;
 
   Vector2 ComputeForce(const vector<Boid>& boids, int boidAgentIndex) {
+    for (int i = 0; i < boids.size(); ++i) {
+      if (boids.at(boidAgentIndex).position.getMagnitude() - boids.at(i).position.getMagnitude() < radius) {
+
+    }
     return {};
   }
 };
-
+// Implement
 struct Alignment {
   double radius;
   double k;
@@ -115,7 +119,7 @@ struct Alignment {
     return {};
   }
 };
-
+// Implement
 struct Separation {
   double radius;
   double k;
@@ -147,6 +151,8 @@ int main() {
     currentState.push_back(b);
     newState.push_back(b);
   }
+
+  cin.ignore(256, '\n'); // Makes cin compatible with getline
   // Final input reading and processing
   // todo: edit this. probably my code will be different than yours.
   while (getline(cin, line)) { // game loop
